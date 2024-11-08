@@ -1,7 +1,7 @@
 package com.ifpb.ads.p5.taskManagerAPI.services;
 
-import com.ifpb.ads.p5.taskManagerAPI.models.User;
-import com.ifpb.ads.p5.taskManagerAPI.repositories.IUserRepository;
+import com.ifpb.ads.p5.taskManagerAPI.models.Task;
+import com.ifpb.ads.p5.taskManagerAPI.repositories.ITaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,26 +10,26 @@ import java.util.List;
 @Service
 public class TaskService {
     @Autowired
-    private IUserRepository userRepository;
+    private ITaskRepository taskRepository;
 
-    public List<User> listAll(){
-        return userRepository.findAll();
+    public List<Task> listAll(){
+        return taskRepository.findAll();
     }
 
-    public User findById(Long id){
-        return userRepository.findById(id).get();
+    public Task findById(Long id){
+        return taskRepository.findById(id).get();
     }
 
-    public User save(User user){
-        return userRepository.save(user);
+    public Task save(Task user){
+        return taskRepository.save(user);
     }
 
     public void delete(Long id){
-        userRepository.deleteById(id);
+        taskRepository.deleteById(id);
     }
 
-    public User update(User user){
-        return userRepository.save(user);
+    public Task update(Task user){
+        return taskRepository.save(user);
     }
 
 }
