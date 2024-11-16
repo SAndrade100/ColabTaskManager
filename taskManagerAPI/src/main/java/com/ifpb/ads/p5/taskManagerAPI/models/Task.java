@@ -1,6 +1,9 @@
 package com.ifpb.ads.p5.taskManagerAPI.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import java.util.Date;
 import java.util.Set;
@@ -11,10 +14,17 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @NotBlank(message = "Description is required")
+    @Size(min = 3, max = 255, message = "Description must be between 3 and 255 characters")
     private String description;
+
+    @Future(message = "Date must be in the future")
     private Date date;
+
     @ManyToMany(mappedBy = "tasks")
     private Set<User> users;
+
     @OneToMany(mappedBy = "task")
     private Set<Appointment> appointments;
 

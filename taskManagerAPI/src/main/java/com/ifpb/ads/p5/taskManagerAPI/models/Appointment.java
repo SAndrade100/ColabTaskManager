@@ -1,10 +1,9 @@
 package com.ifpb.ads.p5.taskManagerAPI.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Future;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "appointments")
@@ -12,6 +11,8 @@ public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Future(message = "Date must be in the future")
     private Date dataHora;
 
     @ManyToOne

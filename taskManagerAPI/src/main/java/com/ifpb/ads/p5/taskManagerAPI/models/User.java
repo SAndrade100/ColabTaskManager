@@ -1,6 +1,10 @@
 package com.ifpb.ads.p5.taskManagerAPI.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.Set;
 
@@ -10,8 +14,15 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotBlank(message = "Name is mandatory")
     private String name;
+
+    @Email(message = "Email should be valid")
     private String email;
+
+    @Min(value = 6, message = "Password should have at least 6 characters")
+    @Max(value = 20, message = "Password should have at most 20 characters")
     private String password;
 
     @ManyToMany
